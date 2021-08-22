@@ -7,16 +7,16 @@ import java.sql.Statement;
 
 /**
  * Create Table JDBC Example
- * @author Ramesh Fadatare
- *
- */
-public class CreateTableExample {
+ * @author prashant
+ **/
 
+public class CreateTableExample
+{
     private final String url = "jdbc:postgresql://localhost:5555/newdb";
     private final String user = "postgres";
     private final String password = "postgres";
 
-    private static final String createTableSQL = "CREATE TABLE users " +
+    private static final String createTableSQL = "CREATE TABLE users2" +
             "(ID INT PRIMARY KEY ," +
             " NAME TEXT, " +
             " EMAIL VARCHAR(50), " +
@@ -25,7 +25,7 @@ public class CreateTableExample {
 
     public static void main(String[] argv) throws SQLException {
         CreateTableExample createTableExample = new CreateTableExample();
-        createTableExample.createTable();
+        //createTableExample.createTable();
     }
 
     public void createTable() throws SQLException {
@@ -42,23 +42,7 @@ public class CreateTableExample {
         } catch (SQLException e) {
 
             // print SQL exception information
-            printSQLException(e);
-        }
-    }
-
-    public static void printSQLException(SQLException ex) {
-        for (Throwable e: ex) {
-            if (e instanceof SQLException) {
-                e.printStackTrace(System.err);
-                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
-                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
-                System.err.println("Message: " + e.getMessage());
-                Throwable t = ex.getCause();
-                while (t != null) {
-                    System.out.println("Cause: " + t);
-                    t = t.getCause();
-                }
-            }
+            ExceptionHandling.printSQLException(e);
         }
     }
 }
